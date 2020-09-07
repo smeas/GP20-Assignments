@@ -23,7 +23,7 @@ void draw() {
 
 	translate(400, 400);
 	rotate(millis() / 1800f);
-	scale(1 - pingPong(millis() / 10000f, 0.3));
+	scale(1 - pingPongSmooth(millis() / 1000f, 0.3));
 
 	for (int i = 0; i < 360/ANGLE; i++) {
 		rotate(radians(ANGLE));
@@ -42,6 +42,10 @@ void drawCorners() {
 float pingPong(float v, float length) {
 	v = v % (length * 2);
 	return length - abs(v - length);
+}
+
+float pingPongSmooth(float v, float length) {
+	return length * (sin(v) + 1) / 2;
 }
 
 void drawAt(Drawable drawable, float x, float y, float rot) {
