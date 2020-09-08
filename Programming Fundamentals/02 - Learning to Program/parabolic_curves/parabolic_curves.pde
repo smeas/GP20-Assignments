@@ -8,7 +8,7 @@ ParabolicCurve cornerCurve = new ParabolicCurve(
 
 ParabolicCurve middleCurve = new ParabolicCurve(
 	new PVector(400, 0),
-	new PVector(400, 0).rotate(radians(ANGLE)), LINES);
+	new PVector(400, 0).rotate(radians(90+90)), LINES);
 
 void setup() {
 	size(800, 800);
@@ -18,6 +18,10 @@ void setup() {
 
 void draw() {
 	background(159,21,231);
+
+	middleCurve.axis2 = new PVector(400, 0).rotate(radians(pingPongSmooth(millis() / 1000f, 45, 135)));
+	cornerCurve.axis1 = new PVector(1, 0).mult(pingPongSmooth(millis() / 1500f, 1, 800));
+	cornerCurve.axis2 = new PVector(0, 1).mult(pingPongSmooth(millis() / 1500f, 800, 1));
 
 	drawCorners();
 
@@ -48,6 +52,10 @@ float pingPongSmooth(float v, float length) {
 	return length * (sin(v) + 1) / 2;
 }
 
+float pingPongSmooth(float v, float start, float end) {
+	return start + pingPongSmooth(v, end - start);
+}
+
 void drawAt(Drawable drawable, float x, float y, float rot) {
 	pushMatrix();
 	translate(x, y);
@@ -61,8 +69,8 @@ interface Drawable {
 }
 
 class ParabolicCurve implements Drawable {
-	private PVector axis1, axis2;
-	private int numLines;
+	public PVector axis1, axis2;
+	public int numLines;
 
 	public ParabolicCurve(PVector axis1, PVector axis2, int numLines) {
 		this.axis1 = axis1;
