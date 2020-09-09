@@ -58,8 +58,8 @@ void reset() {
 	p1 = new Vec2();
 	p2 = new Vec2();
 	targetVector = new Vec2(
-		int(random(width * 0.1f, width * 0.2f)),
-		int(random(height * 0.1f, width * 0.2f)));
+		int(random(width * 0.1f, width * 0.8f)),
+		int(random(height * 0.1f, width * 0.8f)));
 	lineDone = false;
 	attempts = 0;
 	score = 0;

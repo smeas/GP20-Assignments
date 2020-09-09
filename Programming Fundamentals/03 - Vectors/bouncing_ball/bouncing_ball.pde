@@ -33,7 +33,7 @@ void updateBall() {
 		ballPos.x = ballSize.x / 2;
 		ballVel.x = -ballVel.x;
 	}
-	
+
 	if (ballPos.y - ballSize.y / 2 < 0) {
 		ballPos.y = ballSize.y / 2;
 		ballVel.y = -ballVel.y;
@@ -52,7 +52,5 @@ void updateBall() {
 
 void mouseReleased() {
 	PVector circleToMouse = new PVector(mouseX, mouseY).sub(ballPos);
-	
-	ballPos = new PVector(mouseX, mouseY);
 	ballVel.set(circleToMouse).mult(ballSpeed);
 }
