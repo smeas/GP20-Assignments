@@ -1,6 +1,6 @@
-PVector targetVector;
-PVector currentVector;
-PVector p1, p2;
+Vec2 targetVector;
+Vec2 currentVector;
+Vec2 p1, p2;
 boolean lineDone;
 boolean showHelp = true;
 boolean leftMouseDown;
@@ -22,7 +22,7 @@ void draw() {
 		p2.set(mouseX, mouseY);
 	}
 
-	currentVector = PVector.sub(p2, p1);
+	currentVector = Vec2.sub(p2, p1);
 
 	if (leftMouseDown || lineDone) {
 		drawVector(p1, p2);
@@ -55,9 +55,9 @@ void mouseReleased() {
 
 
 void reset() {
-	p1 = new PVector();
-	p2 = new PVector();
-	targetVector = new PVector(
+	p1 = new Vec2();
+	p2 = new Vec2();
+	targetVector = new Vec2(
 		int(random(width * 0.1f, width * 0.2f)),
 		int(random(height * 0.1f, width * 0.2f)));
 	lineDone = false;
@@ -65,7 +65,7 @@ void reset() {
 	score = 0;
 }
 
-void drawVector(PVector start, PVector end) {
+void drawVector(Vec2 start, Vec2 end) {
 	strokeWeight(1);
 	stroke(0, 255, 0);
 	line(start.x, start.y, end.x, start.y);
@@ -97,16 +97,16 @@ void drawInfoText() {
 	text("Attempts: " + attempts, width - 10, 26*2);
 }
 
-String vectorInfo(PVector vector, boolean showLength) {
+String vectorInfo(Vec2 vector, boolean showLength) {
 	if (showLength)
-		return vector + " length = " + vector.mag();
+		return vector + " length = " + vector.length();
 	return vector.toString();
 }
 
 // Returns a 0..1 value based on how close the length of 'vector' is to that of 'target'.
-float calculateDistanceScore(PVector vector, PVector target) {
-	float targetLength = target.mag();
-	float currentLength = vector.mag();
+float calculateDistanceScore(Vec2 vector, Vec2 target) {
+	float targetLength = target.length();
+	float currentLength = vector.length();
 
 	float distance = abs(currentLength - targetLength);
 	return 1 - clamp(distance, 0, targetLength) / targetLength;
