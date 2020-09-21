@@ -65,7 +65,8 @@ void update() {
 	ballSpawnTimer += deltaTime;
 	if (ballSpawnTimer >= BALL_SPAWN_DELAY) {
 		ballSpawnTimer -= BALL_SPAWN_DELAY;
-		ballManager.spawnBall();
+		if (ballManager.ballCount() < MAX_BALLS)
+			ballManager.spawnBall();
 	}
 }
 

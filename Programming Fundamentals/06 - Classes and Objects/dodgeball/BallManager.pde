@@ -46,4 +46,8 @@ class BallManager {
 	public void reset() {
 		balls.clear();
 	}
+
+	public int ballCount() {
+		return balls.size();
+	}
 }
