@@ -1,6 +1,8 @@
 void keyPressed() {
 	if (key == 'g')
 		enableGravity = !enableGravity;
+	else if (key == 'r')
+		reset();
 	else
 		onInput(true);
 }
