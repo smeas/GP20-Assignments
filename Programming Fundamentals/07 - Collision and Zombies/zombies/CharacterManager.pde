@@ -10,16 +10,18 @@ class CharacterManager {
 		for (int j = 0; j < characters.size(); j++) {
 			if (i == j) continue;
 
-			Character c1 = characters.get(i);
-			Character c2 = characters.get(j);
+			Character char1 = characters.get(i);
+			Character char2 = characters.get(j);
 
-			if (c1 instanceof Zombie && c2 instanceof Human) {
-				if (c1.collidesWith(c2)) {
+			if (char1.collidesWith(char2)) {
+				separateCollidingCharacters(char1, char2);
+
+				if (char1 instanceof Zombie && char2 instanceof Human) {
 					// "Infect" the human.
 					Zombie zombie = new Zombie();
-					zombie.position.set(c2.position);
-					zombie.velocity.set(c2.velocity);
-					zombie.radius = c2.radius;
+					zombie.position.set(char2.position);
+					zombie.velocity.set(char2.velocity);
+					zombie.radius = char2.radius;
 					characters.set(j, zombie);
 				}
 			}
@@ -33,5 +35,14 @@ class CharacterManager {
 
 	public void add(Character character) {
 		characters.add(character);
+	}
+
+	private void separateCollidingCharacters(Character c1, Character c2) {
+		float distance = c1.position.dist(c2.position);
+		float intersectionAmount = c1.radius + c2.radius - distance;
+
+		PVector direction = PVector.sub(c2.position, c1.position).normalize().mult(intersectionAmount / 2);
+		c1.position.sub(direction);
+		c2.position.add(direction);
 	}
 }

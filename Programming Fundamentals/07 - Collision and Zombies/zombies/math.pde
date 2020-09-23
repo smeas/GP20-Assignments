@@ -22,6 +22,10 @@ float mod(float x, float n) {
 }
 
 // Distance squared.
+float distSq(PVector a, PVector b) {
+	return distSq(a.x, a.y, b.x, b.y);
+}
+
 float distSq(float x1, float y1, float x2, float y2) {
 	return sq(x2 - x1) + sq(y2 - y1);
 }
@@ -37,6 +41,11 @@ boolean circleCollision(float x1, float y1, float radius1, float x2, float y2, f
 	}
 
 	return true;
+}
+
+// Stupid `PVector.angleBetween` always returns a positive angle...
+float signedAngleBetween(PVector a, PVector b) {
+	return atan2(a.x*b.y - a.y*b.x, a.x*b.x + a.y*b.y);
 }
 
 // Random

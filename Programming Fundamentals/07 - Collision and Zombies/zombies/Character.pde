@@ -29,7 +29,9 @@ class Character {
 
 		// Draw additional instances of the character when wrapping.
 
-		if (position.x - radius < 0 || position.x + radius >= width) {
+		final float safeZone = 20;
+
+		if (position.x - radius - safeZone < 0 || position.x + radius + safeZone >= width) {
 			pushMatrix();
 				translate(position.x - width, position.y);
 				rotate(angle);
@@ -37,7 +39,7 @@ class Character {
 			popMatrix();
 		}
 
-		if (position.y - radius < 0 || position.y + radius >= height) {
+		if (position.y - radius - safeZone < 0 || position.y + radius + safeZone >= height) {
 			pushMatrix();
 				translate(position.x, position.y - height);
 				rotate(angle);
