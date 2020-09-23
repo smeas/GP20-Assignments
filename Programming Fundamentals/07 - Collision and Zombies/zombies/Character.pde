@@ -16,13 +16,38 @@ class Character {
 	}
 
 	public void draw() {
+		float angle = atan2(velocity.y, velocity.x);
+
 		noStroke();
 		fill(_color);
-		ellipse(position.x, position.y, radius*2, radius*2);
 
-		// TODO: Only draw the character multiple times when necessary.
-		ellipse(position.x - width, position.y, radius*2, radius*2);
-		ellipse(position.x, position.y - height, radius*2, radius*2);
+		pushMatrix();
+			translate(position.x, position.y);
+			rotate(angle);
+			drawCharacter();
+		popMatrix();
+
+		// Draw additional instances of the character when wrapping.
+
+		if (position.x - radius < 0 || position.x + radius >= width) {
+			pushMatrix();
+				translate(position.x - width, position.y);
+				rotate(angle);
+				drawCharacter();
+			popMatrix();
+		}
+
+		if (position.y - radius < 0 || position.y + radius >= height) {
+			pushMatrix();
+				translate(position.x, position.y - height);
+				rotate(angle);
+				drawCharacter();
+			popMatrix();
+		}
+	}
+
+	protected void drawCharacter() {
+		ellipse(0, 0, radius*2, radius*2);
 	}
 
 	public boolean collidesWith(Character other) {

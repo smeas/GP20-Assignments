@@ -19,6 +19,7 @@ class CharacterManager {
 					Zombie zombie = new Zombie();
 					zombie.position.set(c2.position);
 					zombie.velocity.set(c2.velocity);
+					zombie.radius = c2.radius;
 					characters.set(j, zombie);
 				}
 			}
