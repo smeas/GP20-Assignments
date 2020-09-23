@@ -1,0 +1,49 @@
+class Character {
+	public PVector position;
+	public PVector velocity = new PVector();
+	public float radius = CHARACTER_RADIUS;
+	public color _color;
+
+	public Character() {
+		position = randomVector(0, width, 0, height);
+	}
+
+	public void update(float dt) {
+		position.x += velocity.x * dt;
+		position.y += velocity.y * dt;
+
+		screenWrap();
+	}
+
+	public void draw() {
+		noStroke();
+		fill(_color);
+		ellipse(position.x, position.y, radius*2, radius*2);
+
+		// TODO: Only draw the character multiple times when necessary.
+		ellipse(position.x - width, position.y, radius*2, radius*2);
+		ellipse(position.x, position.y - height, radius*2, radius*2);
+	}
+
+	public boolean collidesWith(Character other) {
+		return circleCollision(position.x, position.y, radius,
+		                       other.position.x, other.position.y, other.radius);
+	}
+
+	// private void screenCollision() {
+	// 	if (position.x - radius < 0 || position.x + radius >= width) {
+	// 		position.x = clamp(position.x, radius, width - radius - 1);
+	// 		velocity.x = -velocity.x;
+	// 	}
+	//
+	// 	if (position.y - radius < 0 || position.y + radius >= height) {
+	// 		position.y = clamp(position.y, radius, height - radius - 1);
+	// 		velocity.y = -velocity.y;
+	// 	}
+	// }
+
+	private void screenWrap() {
+		position.x = mod(position.x - radius, width) + radius;
+		position.y = mod(position.y - radius, width) + radius;
+	}
+}
