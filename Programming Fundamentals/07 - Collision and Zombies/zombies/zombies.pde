@@ -20,6 +20,9 @@ void update() {
 	float dt = clock.tick();
 
 	characterManager.update(dt);
+
+	if (!gameOver)
+		totalTime += dt;
 	gameOverCheck();
 }
 
@@ -34,6 +37,8 @@ void draw() {
 		textAlign(CENTER, CENTER);
 		textSize(42);
 		text("The zombies have taken over!", width/2, height/2);
+		textSize(24);
+		text("All humans extinct after " + (int)totalTime + " seconds.", width/2, height/2 + 42);
 	}
 }
 

@@ -41,8 +41,8 @@ class CharacterManager {
 		float distance = c1.position.dist(c2.position);
 		float intersectionAmount = c1.radius + c2.radius - distance;
 
-		PVector direction = PVector.sub(c2.position, c1.position).normalize().mult(intersectionAmount / 2);
-		c1.position.sub(direction);
-		c2.position.add(direction);
+		PVector pushDistance = PVector.sub(c2.position, c1.position).normalize().mult(intersectionAmount / 2);
+		c1.position.sub(pushDistance);
+		c2.position.add(pushDistance);
 	}
 }
