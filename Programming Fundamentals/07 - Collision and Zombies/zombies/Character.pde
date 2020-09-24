@@ -18,9 +18,6 @@ class Character {
 	public void draw() {
 		float angle = atan2(velocity.y, velocity.x);
 
-		noStroke();
-		fill(_color);
-
 		pushMatrix();
 			translate(position.x, position.y);
 			rotate(angle);
@@ -49,6 +46,8 @@ class Character {
 	}
 
 	protected void drawCharacter() {
+		noStroke();
+		fill(_color);
 		ellipse(0, 0, radius*2, radius*2);
 	}
 

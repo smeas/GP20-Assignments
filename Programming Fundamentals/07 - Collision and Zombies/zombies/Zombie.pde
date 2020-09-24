@@ -15,7 +15,6 @@ class Zombie extends Character {
 	@Override
 	public void update(float dt) {
 		super.update(dt);
-
 		followClosestHuman(dt);
 	}
 
@@ -29,6 +28,12 @@ class Zombie extends Character {
 		// Draw the body.
 		fill(_color);
 		super.drawCharacter();
+
+		// Draw eyes.
+		fill(255);
+		float eyeScale = 4 * (radius / 10);
+		ellipse(radius - 5, eyeScale, eyeScale, eyeScale);
+		ellipse(radius - 5, -eyeScale, eyeScale, eyeScale);
 	}
 
 	private Human findClosestHuman() {

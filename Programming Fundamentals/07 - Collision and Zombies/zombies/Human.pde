@@ -27,6 +27,17 @@ class Human extends Character {
 			selectNewTarget();
 	}
 
+	@Override
+	protected void drawCharacter() {
+		super.drawCharacter();
+
+		// Draw eyes.
+		fill(0);
+		float eyeScale = 4 * (radius / 10);
+		ellipse(radius - 5, eyeScale, eyeScale, eyeScale);
+		ellipse(radius - 5, -eyeScale, eyeScale, eyeScale);
+	}
+
 	private void selectNewTarget() {
 		currentDistance = 0;
 		targetDistance = random(MIN_WALK_DISTANCE, MAX_WALK_DISTANCE);
