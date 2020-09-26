@@ -20,7 +20,7 @@ class CharacterManager {
 					// "Infect" the human.
 					Zombie zombie = new Zombie();
 					zombie.position.set(char2.position);
-					zombie.velocity.set(char2.velocity);
+					zombie.velocity.set(char2.velocity).mult(ZOMBIE_SPEED_MULTIPLIER);
 					zombie.radius = char2.radius;
 					characters.set(j, zombie);
 				}

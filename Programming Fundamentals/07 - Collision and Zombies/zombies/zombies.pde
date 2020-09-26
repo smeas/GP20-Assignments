@@ -1,5 +1,6 @@
 final float HUMAN_SPEED = 50;
-final float ZOMBIE_SPEED = HUMAN_SPEED * 0.6f;
+final float ZOMBIE_SPEED_MULTIPLIER = 0.7f;
+final float ZOMBIE_SPEED = HUMAN_SPEED * ZOMBIE_SPEED_MULTIPLIER;
 final float CHARACTER_RADIUS = 10;
 
 CharacterManager characterManager = new CharacterManager();

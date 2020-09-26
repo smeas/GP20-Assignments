@@ -3,10 +3,10 @@ class Human extends Character {
 	private static final int COLOR_VARIATION = 30;
 	private static final float MIN_WALK_DISTANCE = 50;
 	private static final float MAX_WALK_DISTANCE = 200;
-
+	private static final float TURNING_SPEED = PI/2 * 1.2f; // 90°/s
 
 	private float targetDistance;
-	//private PVector targetDirection = new PVector();
+	private PVector targetDirection = new PVector();
 	private float currentDistance;
 
 	public Human() {
@@ -25,6 +25,11 @@ class Human extends Character {
 		currentDistance += velocity.mag() * dt;
 		if (currentDistance >= targetDistance)
 			selectNewTarget();
+
+		// Rotate towards the target direction.
+		float currentAngle = atan2(velocity.y, velocity.x);
+		float targetAngle = currentAngle + signedAngleBetween(velocity, targetDirection);
+		velocity.rotate(moveTowards(currentAngle, targetAngle, TURNING_SPEED * dt) - currentAngle);
 	}
 
 	@Override
@@ -41,6 +46,6 @@ class Human extends Character {
 	private void selectNewTarget() {
 		currentDistance = 0;
 		targetDistance = random(MIN_WALK_DISTANCE, MAX_WALK_DISTANCE);
-		velocity.rotate(random(-PI/2, PI/2));
+		targetDirection.set(velocity).rotate(random(-PI/2, PI/2));
 	}
 }
