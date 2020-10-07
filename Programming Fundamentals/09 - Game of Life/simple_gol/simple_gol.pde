@@ -36,8 +36,8 @@ void drawGrid() {
 	stroke(127);
 
 	float cellSize = width / grid.width;
-	for (int y = 0; y < grid.width; y++)
-	for (int x = 0; x < grid.height; x++) {
+	for (int y = 0; y < grid.height; y++)
+	for (int x = 0; x < grid.width; x++) {
 		if (grid.get(x, y))
 			fill(0);
 		else
@@ -48,8 +48,8 @@ void drawGrid() {
 }
 
 void randomizeGrid(float probability) {
-	for (int y = 0; y < grid.width; y++)
-	for (int x = 0; x < grid.height; x++) {
+	for (int y = 0; y < grid.height; y++)
+	for (int x = 0; x < grid.width; x++) {
 		if (randomChance(probability)) {
 			grid.set(x, y, true);
 		}

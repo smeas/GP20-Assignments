@@ -30,7 +30,7 @@ class Grid {
 
 	public void step() {
 		for (int y = 0; y < height; y++)
-		for (int x = 0; x < height; x++) {
+		for (int x = 0; x < width; x++) {
 			boolean alive = get(x, y);
 			int aliveNeighbors = getAliveNeighbors(x, y);
 
@@ -45,7 +45,7 @@ class Grid {
 		}
 
 		for (int y = 0; y < height; y++)
-		for (int x = 0; x < height; x++) {
+		for (int x = 0; x < width; x++) {
 			cells[x][y] = tempCells[x][y];
 		}
 	}
@@ -65,7 +65,7 @@ class Grid {
 
 	public void clear() {
 		for (int y = 0; y < height; y++)
-		for (int x = 0; x < height; x++) {
+		for (int x = 0; x < width; x++) {
 			set(x, y, false);
 		}
 	}
