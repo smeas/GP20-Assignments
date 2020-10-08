@@ -7,6 +7,7 @@ int oldTime;
 boolean simulationPaused;
 float simulationSpeed = 8;
 boolean drawingCellState = true;
+boolean showFramerate;
 
 void setup() {
 	size(800, 860);
@@ -47,8 +48,10 @@ void draw() {
 
 	ui.draw();
 
-	textAlign(LEFT, TOP);
-	text(frameRate, 10, 10);
+	if (showFramerate) {
+		textAlign(LEFT, TOP);
+		text(frameRate, 10, 10);
+	}
 
 	oldTime = time;
 }

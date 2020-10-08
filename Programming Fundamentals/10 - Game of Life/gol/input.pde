@@ -7,6 +7,9 @@ void keyPressed() {
 	else if (key == 's') {
 		grid.step();
 	}
+	else if (keyCode == java.awt.event.KeyEvent.VK_F3) {
+		showFramerate = !showFramerate;
+	}
 }
 
 void keyReleased() {
