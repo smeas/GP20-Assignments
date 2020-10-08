@@ -11,7 +11,6 @@ void setup() {
 	size(800, 800);
 
 	grid = new Grid(80, 80);
-	grid.size.set(800, 600);
 	randomizeGrid(0.1f);
 }
 
