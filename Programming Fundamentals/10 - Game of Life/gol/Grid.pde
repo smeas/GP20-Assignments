@@ -1,3 +1,11 @@
+final color ALIVE_COLOR_START = color(85, 198, 250);
+final color ALIVE_COLOR_END = color(9, 121, 173);
+final int ALIVE_COLOR_STEPS = 8;
+
+final color DEAD_COLOR_START = color(255, 200, 200);
+final color DEAD_COLOR_END = color(255);
+final int DEAD_COLOR_STEPS = 2;
+
 static final int NEIGHBOR_COUNT = 8;
 
 static int[][] neighborOffsets = {
@@ -69,10 +77,10 @@ class Grid {
 		for (int x = 0; x < gridSizeX; x++) {
 			Cell cell = get(x, y);
 			if (cell.alive) {
-				fill(lerpColor(color(85, 198, 250), color(9, 121, 173), cell.age / 8f));
+				fill(lerpColor(ALIVE_COLOR_START, ALIVE_COLOR_END, (float)cell.age / ALIVE_COLOR_STEPS));
 			}
 			else {
-				fill(lerpColor(color(255, 200, 200), color(255), cell.age / 2f));
+				fill(lerpColor(DEAD_COLOR_START, DEAD_COLOR_END, (float)cell.age / DEAD_COLOR_STEPS));
 			}
 
 			rect(position.x + x * cellSizeX,
