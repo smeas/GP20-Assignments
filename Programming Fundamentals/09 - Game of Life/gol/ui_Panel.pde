@@ -1,6 +1,10 @@
 class Panel extends UIElement {
 	public ArrayList<UIElement> elements = new ArrayList<UIElement>();
 
+	public Panel() {
+		super();
+	}
+
 	public Panel(PVector position, PVector size) {
 		super(position, size);
 	}

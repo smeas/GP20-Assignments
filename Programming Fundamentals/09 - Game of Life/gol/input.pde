@@ -1,10 +1,11 @@
-//boolean drawing = true;
-
 boolean leftMousePressed;
 
 void keyPressed() {
-	if (key == 'p') {
-		simulationPaused = !simulationPaused;
+	if (key == 'p' || key == ' ') {
+		setSimulationPaused(!simulationPaused);
+	}
+	else if (key == 's') {
+		grid.step();
 	}
 }
 

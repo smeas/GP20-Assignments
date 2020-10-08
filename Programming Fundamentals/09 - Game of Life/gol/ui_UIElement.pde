@@ -3,6 +3,9 @@ class UIElement {
 	public PVector size;
 	public Style style;
 
+	public UIElement() {
+		this(new PVector(), new PVector());
+	}
 
 	public UIElement(PVector position, PVector size) {
 		this(position, size, new Style());

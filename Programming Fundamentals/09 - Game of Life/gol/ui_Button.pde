@@ -11,6 +11,10 @@ class Button extends UIElement {
 	public boolean pressed;
 	public boolean hovering;
 
+	public Button() {
+		super();
+	}
+
 	public Button(PVector position, PVector size) {
 		super(position, size);
 	}
