@@ -20,10 +20,18 @@ void mousePressed() {
 			drawingCellState = !grid.get(pos).alive;
 		}
 	}
+
+	ui.mousePressed();
 }
 
 void mouseReleased() {
 	if (mouseButton == LEFT) {
 		leftMousePressed = false;
 	}
+
+	ui.mouseReleased();
+}
+
+void mouseMoved() {
+	ui.mouseMoved();
 }
