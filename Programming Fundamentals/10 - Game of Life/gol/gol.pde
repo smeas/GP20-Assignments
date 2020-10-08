@@ -10,6 +10,7 @@ boolean drawingCellState = true;
 
 void setup() {
 	size(800, 860);
+	frameRate(-1);
 
 	grid = new Grid(new PVector(0, 0), new PVector(width, width), 80, 80);
 	randomizeGrid(0.1f);
@@ -45,6 +46,9 @@ void draw() {
 	grid.draw();
 
 	ui.draw();
+
+	textAlign(LEFT, TOP);
+	text(frameRate, 10, 10);
 
 	oldTime = time;
 }

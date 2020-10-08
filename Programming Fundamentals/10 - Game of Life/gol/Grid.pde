@@ -38,6 +38,12 @@ class Grid {
 			cells[x][y] = new Cell();
 			tempCells[x][y] = new Cell();
 		}
+
+		for (int y = 0; y < gridSizeY; y++)
+		for (int x = 0; x < gridSizeX; x++) {
+			initCell(cells, x, y);
+			initCell(tempCells, x, y);
+		}
 	}
 
 
@@ -63,15 +69,6 @@ class Grid {
 		for (int x = 0; x < gridSizeX; x++) {
 			Cell cell = get(x, y);
 			if (cell.alive) {
-				// Reds
-				// 235, 64, 52
-				// 148, 30, 22
-
-				// Blues
-				// 85, 198, 250
-				// 52, 177, 235
-				// 9, 121, 173
-
 				fill(lerpColor(color(85, 198, 250), color(9, 121, 173), cell.age / 8f));
 			}
 			else {
@@ -124,9 +121,9 @@ class Grid {
 	}
 
 	private void updateCell(int x, int y) {
-		Cell cell = get(x, y);
-		Cell tempCell = getTemp(x, y);
-		int aliveNeighbors = getAliveNeighborCount(x, y);
+		Cell cell = cells[x][y];
+		Cell tempCell = tempCells[x][y];
+		int aliveNeighbors = getAliveNeighborCount(cell);
 
 		tempCell.age++;
 		if (cell.alive) {
@@ -139,27 +136,22 @@ class Grid {
 		}
 	}
 
-	public Cell getTemp(int x, int y) {
-		x = mod(x, gridSizeX);
-		y = mod(y, gridSizeY);
-		return tempCells[x][y];
-	}
-
-	// private void setTemp(int x, int y, boolean value) {
-	// 	x = mod(x, gridSizeX);
-	// 	y = mod(y, gridSizeY);
-	// 	tempCells[x][y].setAlive(value);
-	// }
-
-	private int getAliveNeighborCount(int x, int y) {
+	private int getAliveNeighborCount(Cell cell) {
 		int aliveCount = 0;
 		for (int i = 0; i < NEIGHBOR_COUNT; i++) {
-			Cell neighbor = get(x + neighborOffsets[i][0], y + neighborOffsets[i][1]);
-			if (neighbor.alive) {
+			if (cell.neighbors[i].alive)
 				aliveCount++;
-			}
 		}
 
 		return aliveCount;
+	}
+
+	private void initCell(Cell[][] array, int px, int py) {
+		Cell cell = array[px][py];
+		for (int i = 0; i < NEIGHBOR_COUNT; i++) {
+			int x = mod(px + neighborOffsets[i][0], gridSizeX);
+			int y = mod(py + neighborOffsets[i][1], gridSizeY);
+			cell.neighbors[i] = array[x][y];
+		}
 	}
 }

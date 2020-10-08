@@ -2,10 +2,7 @@ class Cell {
 	public boolean alive;
 	public int age;
 
-	public Cell() {}
-	public Cell(boolean alive) {
-		this.alive = alive;
-	}
+	public Cell[] neighbors = new Cell[NEIGHBOR_COUNT];
 
 	public void setAlive(boolean value) {
 		if (alive == value) return;
