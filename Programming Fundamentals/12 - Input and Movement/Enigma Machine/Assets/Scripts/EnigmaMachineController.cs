@@ -4,6 +4,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioSource))]
 public class EnigmaMachineController : MonoBehaviour {
 	[SerializeField] private Transform[] codeWheels = new Transform[3];
 	[SerializeField] private Transform[] keys = new Transform[26];
