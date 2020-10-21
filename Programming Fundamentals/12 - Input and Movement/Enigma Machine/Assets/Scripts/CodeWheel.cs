@@ -34,12 +34,12 @@ public class CodeWheel {
 
 	public int Get(int key) {
 		if (key < 0 || key >= 26) throw new ArgumentOutOfRangeException(nameof(key));
-		return lookupTable[(key + offset) % 26];
+		return Util.Mod(lookupTable[Util.Mod(key - offset, 26)] + offset, 26);
 	}
 
 	public int GetReversed(int key) {
 		if (key < 0 || key >= 26) throw new ArgumentOutOfRangeException(nameof(key));
-		int index = Array.IndexOf(lookupTable, (key + offset) % 26);
+		int index = Util.Mod(Array.IndexOf(lookupTable, Util.Mod(key - offset, 26)) + offset, 26);
 		Debug.Assert(index != -1);
 		return index;
 	}
