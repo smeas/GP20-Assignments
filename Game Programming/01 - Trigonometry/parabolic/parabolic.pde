@@ -28,12 +28,13 @@ void draw() {
 }
 
 void drawCoolThing(int id, float x, float y, float radius) {
+	float time = millis() / 4000f;
 	switch (id) {
-		case 0: drawFancyCircle(x, y, radius, 110, 24, 37, millis() / (1000f * 4f)); break; // Swirl
-		case 1: drawFancyCircle(x, y, radius, 82, 8, 9, millis() / (1000f * 4f)); break;    // Octagons
-		case 2: drawFancyCircle(x, y, radius, 64, 32, 32, millis() / (1000f * 4f)); break;  // Dual spikes
-		case 3: drawFancyCircle(x, y, radius, 80, 40, 30, millis() / (1000f * 4f)); break;  // Snowflake
-		case 4: drawFancyCircle(x, y, radius, 80, 8, 30, millis() / (1000f * 4f)); break;   // "Rings"
+		case 0: drawFancyCircle(x, y, radius, 110, 24, 37, time); break; // Swirl
+		case 1: drawFancyCircle(x, y, radius, 82, 8, 9, time); break;    // Octagons
+		case 2: drawFancyCircle(x, y, radius, 64, 32, 32, time); break;  // Dual spikes
+		case 3: drawFancyCircle(x, y, radius, 80, 40, 30, time); break;  // Snowflake
+		case 4: drawFancyCircle(x, y, radius, 80, 8, 30, time); break;   // "Rings"
 	}
 }
 
