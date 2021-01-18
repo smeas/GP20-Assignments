@@ -4,3 +4,5 @@
 
 -----
 
+![](parabolic/demo.png)
+![](parabolic/demo.gif)
